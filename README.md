@@ -4,12 +4,12 @@ This repository contains different sets of digits of the mathematical constant Ï
 
 ## Files
 
-- `pi_digits_1000.txt`: The first 1000 digits of pi.
-- `pi_digits_10000.txt`: The first 10,000 digits of pi.
-- `pi_digits_100000.txt`: The first 100,000 digits of pi.
-- `pi_digits_1000000.txt`: The first 1,000,000 digits of pi.
-- `pi_digits_10000000.txt`: The first 10,000,000 digits of pi.
-- `pi_digits_100000000.txt`: The first 100,000,000 digits of pi.
+- `1000_digits.txt`: The first 1000 digits of pi.
+- `10000_digits.txt`: The first 10,000 digits of pi.
+- `100000_digits.txt`: The first 100,000 digits of pi.
+- `1000000_digits.txt`: The first 1,000,000 digits of pi.
+- `10000000_digits.txt`: The first 10,000,000 digits of pi.
+- `100000000_digits.txt`: The first 100,000,000 digits of pi.
 
 ## Usage
 
