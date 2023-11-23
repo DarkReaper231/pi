@@ -4,6 +4,7 @@ This repository contains different sets of digits of the mathematical constant Ï
 
 ## Files
 
+- `pi_cruncher.py`: The program used to calculate pi
 - `1000_digits.txt`: The first 1,000 digits of pi.
 - `10000_digits.txt`: The first 10,000 digits of pi.
 - `100000_digits.txt`: The first 100,000 digits of pi.
