@@ -4,7 +4,7 @@ This repository contains different sets of digits of the mathematical constant Ï
 
 ## Files
 
-- `1000_digits.txt`: The first 1000 digits of pi.
+- `1000_digits.txt`: The first 1,000 digits of pi.
 - `10000_digits.txt`: The first 10,000 digits of pi.
 - `100000_digits.txt`: The first 100,000 digits of pi.
 - `1000000_digits.txt`: The first 1,000,000 digits of pi.
@@ -18,6 +18,7 @@ To clone this repository and access the pi digit files, you can use the followin
 ```bash
 git clone --recursive https://github.com/your_username/pi-digits-repository.git
 ```
+Make sure to use the `--recursive` flag to initialize and update the submodules (required for Git LFS).
 
 ## Contributing
 
