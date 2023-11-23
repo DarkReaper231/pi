@@ -2,21 +2,27 @@ import math
 import re
 from gmpy2 import mpz, isqrt
 
+DIGITS = 1000000
+FILE_NAME = "pi_digits.txt"
+
 def pi_cruncher_bs(n):
     C = 640320  # magic number
     C3_OVER_24 = C**3 // 24
-    progress = 0
-    
-    def update_progress():
-        nonlocal progress
-        progress += 1
-        percent_complete = progress / n * 710  # magic number
-        if percent_complete > 100:
-            percent_complete = 100
-        blocks = int(percent_complete / 2)
+    step = 0
+        
+    def print_progress():
+        nonlocal step
+        step += 1
+        bar_width = 50
+        progress =  step / n * 710  # magic number
+        bar_length = progress * bar_width
+        blocks = int(progress / 2)
         spaces = 50 - blocks
-        bar = '█' * blocks + ' ' * spaces
-        print(f"Don't interupt! Computing Pi: [{bar}] {percent_complete:.2f}%", end='\r', flush=True)
+        bar = '#' * blocks + ' ' * spaces
+        if progress > 100:
+            print(f"Squaring the result! This may take a while so go get yourself some coffee and be patient...", end='\r', flush=True)
+        else:
+            print(f"\rDon't interupt! Computing Pi: [{bar}] {progress:.2f}%", end='\r', flush=True)
 
     def bs(a, b):
         if b - a == 1:
@@ -28,8 +34,7 @@ def pi_cruncher_bs(n):
                 Qab = mpz(a*a*a*C3_OVER_24)
             Tab = Pab * (13591409 + 545140134*a)
             if a & 1:
-                Tab = -Tab
-                
+                Tab = -Tab      
         else:
             # recursive computation P(a,b), Q(a,b) and T(a,b)
             m = (a + b) // 2
@@ -38,8 +43,7 @@ def pi_cruncher_bs(n):
             Pab = Pam * Pmb  # combine everything
             Qab = Qam * Qmb
             Tab = Qmb * Tam + Pam * Tmb
-            
-        update_progress()
+        print_progress()
         return Pab, Qab, Tab
     
     # how many terms to compute
@@ -50,18 +54,17 @@ def pi_cruncher_bs(n):
     sqrtC = isqrt(10005*one_squared)
     pi = str((Q*426880*sqrtC) // T)[1:]  # hack
     
-    print("\nComputation finished: Writing to a file")
+    print("\nComputation finished! Writing to a file...")
     
     result = ""
-    
     for i in range(0, len(pi), 50):
         # can we have faster regexes
         if i + 50 <= len(pi):
             result += re.sub(r'(.{10})', r'\1 ', pi[i:i+50]).strip() + f' : {i + 50}\n'
         else:
             result += re.sub(r'(.{10})', r'\1 ', pi[i:]).strip() + f' : {len(pi)}'
-    
     return '3.\n' + result  # hack
 
-with open("pi_digits.txt", mode='w') as file:
-    file.write(pi_cruncher_bs(1000))
+with open(FILE_NAME, mode='w') as file:
+    file.write(pi_cruncher_bs(DIGITS))
+    print("All done!")
