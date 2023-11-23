@@ -9,7 +9,7 @@ def pi_cruncher_bs(n):
     C = 640320  # magic number
     C3_OVER_24 = C**3 // 24
     step = 0
-        
+
     def print_progress():
         nonlocal step
         step += 1
@@ -34,7 +34,7 @@ def pi_cruncher_bs(n):
                 Qab = mpz(a*a*a*C3_OVER_24)
             Tab = Pab * (13591409 + 545140134*a)
             if a & 1:
-                Tab = -Tab      
+                Tab = -Tab
         else:
             # recursive computation P(a,b), Q(a,b) and T(a,b)
             m = (a + b) // 2
@@ -45,7 +45,7 @@ def pi_cruncher_bs(n):
             Tab = Qmb * Tam + Pam * Tmb
         print_progress()
         return Pab, Qab, Tab
-    
+
     # how many terms to compute
     digits = math.log10(C3_OVER_24/6/2/6)
     N = int(n/digits + 1)
@@ -53,9 +53,9 @@ def pi_cruncher_bs(n):
     one_squared = mpz(10)**(2*n)
     sqrtC = isqrt(10005*one_squared)
     pi = str((Q*426880*sqrtC) // T)[1:]  # hack
-    
+
     print("\nComputation finished! Writing to a file...")
-    
+
     result = ""
     for i in range(0, len(pi), 50):
         # can we have faster regexes
